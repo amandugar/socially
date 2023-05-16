@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import cookie from "js-cookie"
 import { loginUser } from "../utils/authUser"
 import styled from "styled-components"
@@ -12,12 +12,9 @@ import {
   PasswordInput,
 } from "../components/HelperComponents/Inputs"
 import ErrorComponent from "../components/HelperComponents/Error"
-import loaderGif from "../logo/chat.gif"
 import { ThreeBounce } from "better-react-spinkit"
-import { useRouter } from "next/router"
 
 function Login() {
-  const router = useRouter()
   const [visibility, setVisibility] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
   const [loading, setLoading] = useState(false)
@@ -103,10 +100,13 @@ function Login() {
             <ErrorComponent errorMessage={errorMessage} />
           )}
 
-          <Button disabled={submitDisabled} onClick={handleSubmit}>
+          <Button
+            disabled={submitDisabled}
+            onClick={handleSubmit}
+            backgroundColor={"#ef4444"}
+          >
             {loading ? <ThreeBounce size={9} color="#fff" /> : "Log In"}
           </Button>
-          <SmallButton>Forgotten Password?</SmallButton>
           <span
             style={{
               height: "1.5px",
@@ -157,7 +157,7 @@ const Button = styled.button`
   cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
   border-radius: 10px;
   background-color: ${props =>
-    props.backgroundColor ? props.backgroundColor : "#6050dc"};
+    props.backgroundColor ? props.backgroundColor : "#EF4444"};
   color: white;
   font-size: 1.39rem;
   font-family: "Poppins", sans-serif;
@@ -167,18 +167,7 @@ const Button = styled.button`
   border: none;
 
   :hover {
-    background-color: ${props => (props.disabled ? "#a097ea" : "#3e2fb3")};
-  }
-`
-
-const SmallButton = styled.p`
-  cursor: pointer;
-  text-align: center;
-  color: #b19cd9;
-  font-family: "Roboto", sans-serif;
-  font-size: 1.25rem;
-  :hover {
-    text-decoration: underline;
+    background-color: ${props => (props.disabled ? "#666666" : "#dc0d0d")};
   }
 `
 
