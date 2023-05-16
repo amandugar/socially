@@ -1,6 +1,6 @@
 const baseUrl =
   process.env.NODE_ENV !== "production"
     ? "http://localhost:3000"
-    : "https://socially-delta.vercel.app"
+    : "https://socially-5hq7.onrender.com"
 
 export default baseUrl
