@@ -121,40 +121,6 @@ function FollowingPage({ user, userFollowStats, following, errorLoading }) {
   )
 }
 
-{
-  /* {followingArrayState.map((fol) => (
-            <div
-              style={{ border: "1px solid #eee" }}
-              key={fol.id}
-              className="flex justify-between mb-4 rounded-lg bg-white"
-            >
-              <div className="flex items-center p-4 ">
-                <Image src={fol.pic} />
-                <Name className="ml-3">{fol.name}</Name>
-              </div> */
-}
-{
-  /* {isLoggedInUserFollowing ? (
-                <FollowButton
-                //   onClick={async () => {
-                //     await unfollowUser(profile.user._id, setUserFollowStats);
-                //   }}
-                >
-                  <CheckCircleIcon className="h-6" />
-                  <p className="ml-1.5">Following</p>
-                </FollowButton>
-              ) : (
-                <FollowButton
-                //   onClick={async () => {
-                //     await followUser(profile.user._id, setUserFollowStats);
-                //   }}
-                >
-                  <UserAddIcon className="h-6" />
-                  <p className="ml-1.5">Follow</p>
-                </FollowButton>
-              )} */
-}
-
 FollowingPage.getInitialProps = async ctx => {
   try {
     const { token } = parseCookies(ctx)

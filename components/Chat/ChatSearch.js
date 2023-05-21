@@ -1,13 +1,8 @@
-import {
-  ArrowLeftIcon,
-  DotsHorizontalIcon,
-  SearchIcon,
-} from "@heroicons/react/solid"
+import { ArrowLeftIcon, DotsHorizontalIcon } from "@heroicons/react/solid"
 import axios from "axios"
 import React, { useState, useRef } from "react"
 import styled from "styled-components"
 import cookie from "js-cookie"
-import { Facebook } from "react-content-loader"
 import Link from "next/link"
 // import onClickOutside from "react-onclickoutside";
 import { useClickAway } from "react-use"

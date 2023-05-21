@@ -1,26 +1,11 @@
-import axios from "axios";
-import { useRouter } from "next/router";
-import { parseCookies } from "nookies";
-import React, { useRef, useState } from "react";
-import InfoBox from "../../components/HelperComponents/InfoBox";
-import baseUrl from "../../utils/baseUrl";
-import { deletePost, likePost, postComment } from "../../utils/postActions";
-import toast, { Toaster } from "react-hot-toast";
-import ReusableDialog from "../../components/ReusableDialog";
-import styled from "styled-components";
-import calculateTime from "../../utils/calculateTime";
-import { ThumbUpIcon } from "@heroicons/react/solid";
-import {
-  ChatAltIcon,
-  MinusCircleIcon,
-  ShareIcon,
-  ThumbUpIcon as ThumbUpOutlineIcon,
-} from "@heroicons/react/outline";
-import CommentComponent from "../../components/CommentComponent";
-import { TextareaAutosize } from "@material-ui/core";
-import Header from "../../components/Header";
-import Sidebar from "../../components/Sidebar";
-import PostCard from "../../components/PostCard";
+import axios from "axios"
+import { parseCookies } from "nookies"
+import React from "react"
+import InfoBox from "../../components/HelperComponents/InfoBox"
+import baseUrl from "../../utils/baseUrl"
+import Header from "../../components/Header"
+import Sidebar from "../../components/Sidebar"
+import PostCard from "../../components/PostCard"
 
 function PostPageById({ post, errorLoading, user }) {
   if (errorLoading) {
@@ -30,7 +15,7 @@ function PostPageById({ post, errorLoading, user }) {
         message={"Sorry, no post found."}
         content={"No post was found with the specified post ID."}
       />
-    );
+    )
   }
 
   return (
@@ -46,61 +31,21 @@ function PostPageById({ post, errorLoading, user }) {
         </div>
       </main>
     </div>
-  );
+  )
 }
 
-PostPageById.getInitialProps = async (ctx) => {
+PostPageById.getInitialProps = async ctx => {
   try {
-    const { postId } = ctx.query;
-    const { token } = parseCookies(ctx);
+    const { postId } = ctx.query
+    const { token } = parseCookies(ctx)
     const res = await axios.get(`${baseUrl}/api/posts/${postId}`, {
       headers: { Authorization: token },
-    });
+    })
 
-    return { post: res.data };
+    return { post: res.data }
   } catch (error) {
-    return { errorLoading: true };
+    return { errorLoading: true }
   }
-};
+}
 
-export default PostPageById;
-
-const Image = styled.img`
-  object-fit: cover;
-  height: 2.95rem;
-  width: 2.95rem;
-  border-radius: 50%;
-`;
-
-const PostImage = styled.img`
-  object-fit: contain;
-  height: auto;
-  width: 100%;
-  margin-top: 0.35rem;
-  margin-bottom: 1.2rem;
-  transition: all 0.22s ease-out;
-  border-top: 0.7px solid lightgrey;
-  border-bottom: 0.7px solid lightgrey;
-`;
-
-const UserPTag = styled.p`
-  cursor: pointer;
-  margin-bottom: -0.09rem;
-  font-weight: 500;
-  font-size: 1.05rem;
-  :hover {
-    text-decoration: underline;
-  }
-`;
-
-const ThreeDotsDiv = styled.div`
-  height: 2.1rem;
-  width: 2.1rem;
-  border-radius: 50%;
-  cursor: pointer;
-  padding: 0.1rem;
-  font-size: 1.2rem;
-  :hover {
-    background-color: whitesmoke;
-  }
-`;
+export default PostPageById

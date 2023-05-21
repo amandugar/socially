@@ -65,17 +65,7 @@ function ChatsPage({ user, chatsData }) {
       })
       //shallow is used to push a page on the router stack without refreshing
     }
-
-    // cleanup not needed in v4.0.1
-    // return () => {
-    //   //cleanup function to disconnect the user. This is called on component unmount
-    //   // if (socket.current) {
-    //   //   socket.current.emit("disconnect");
-    //   //   socket.current.off(); //this removes the event listener
-    //   // }
-    //   console.log("exiting chat");
-    // };
-  }, [])
+  }, [router, user._id, chats])
 
   //LOAD TEXTS useEffect. Runs whenever router.query.chat changes, so basically whenever the user clicks on a different user
   useEffect(() => {
@@ -109,7 +99,7 @@ function ChatsPage({ user, chatsData }) {
     if (socket.current && router.query.chat) {
       loadTexts() //this should be in a useEffect that's below the useEffect that's creating the connection
     }
-  }, [router.query.chat])
+  }, [router.query.chat, user._id])
 
   const sendText = (e, text) => {
     e.preventDefault()
@@ -189,7 +179,7 @@ function ChatsPage({ user, chatsData }) {
         }
       })
     }
-  }, [])
+  }, [chats])
 
   const endOfMessagesRef = useRef(null)
 
@@ -492,10 +482,6 @@ const LastActive = styled.p`
   font-size: 0.9rem;
   color: rgba(107, 114, 128);
   margin-top: -1.1rem;
-`
-
-const TextInputDiv = styled.div`
-  padding: 1rem;
 `
 
 const EndOfMessage = styled.div`
